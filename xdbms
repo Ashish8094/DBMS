@@ -1,3 +1,498 @@
+sudo su
+(base) admin1@admin1-ThinkCentre-M80:~$ sudo su
+[sudo] password for admin1: 
+root@admin1-ThinkCentre-M80:/home/admin1# my sql
+my: command not found
+root@admin1-ThinkCentre-M80:/home/admin1# mysql
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 8
+Server version: 8.0.42-0ubuntu0.20.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2025, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases
+    -> show databases;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'show databases' at line 2
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| Abhinav_Sharma     |
+| Praveen            |
+| QUerY              |
+| add3303            |
+| add54              |
+| asd                |
+| cc                 |
+| dd                 |
+| hms_db             |
+| hospital_db        |
+| information_schema |
+| libr               |
+| library3233        |
+| mock               |
+| movie              |
+| movie1             |
+| mysql              |
+| performance_schema |
+| practical          |
+| sys                |
++--------------------+
+20 rows in set (0.04 sec)
+
+mysql> create database;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> create database
+    -> aryan
+    -> 
+    -> 
+    -> CREATE DATABASE student_db;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'CREATE DATABASE student_db' at line 5
+mysql> CREATE DATABASE PRODUCT;
+Query OK, 1 row affected (0.22 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| Abhinav_Sharma     |
+| PRODUCT            |
+| Praveen            |
+| QUerY              |
+| add3303            |
+| add54              |
+| asd                |
+| cc                 |
+| dd                 |
+| hms_db             |
+| hospital_db        |
+| information_schema |
+| libr               |
+| library3233        |
+| mock               |
+| movie              |
+| movie1             |
+| mysql              |
+| performance_schema |
+| practical          |
+| sys                |
++--------------------+
+21 rows in set (0.01 sec)
+
+mysql> CREATE TABLE Market Table;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> use PRODUCT
+Database changed
+mysql> CREATE TABLE Product (
+    ->     product_id INT PRIMARY KEY,
+    ->     product_name VARCHAR(50) NOT NULL,
+    ->     price DECIMAL(10,2),
+    ->     stock INT
+    -> );
+Query OK, 0 rows affected (1.04 sec)
+
+mysql> CREATE TABLE Customer (
+    ->     customer_id INT PRIMARY KEY,
+    ->     customer_name VARCHAR(50) NOT NULL,
+    ->     email VARCHAR(50),
+    ->     phone VARCHAR(15)
+    -> );
+Query OK, 0 rows affected (1.82 sec)
+
+mysql> CREATE TABLE Sales (
+    ->     sale_id INT PRIMARY KEY,
+    ->     customer_id INT,
+    ->     product_id INT,
+    ->     quantity INT,
+    ->     sale_date DATE,
+    -> 
+    ->     FOREIGN KEY (customer_id) REFERENCES Customer(customer_id),
+    ->     FOREIGN KEY (product_id) REFERENCES Product(product_id)
+    -> );
+Query OK, 0 rows affected (1.13 sec)
+
+mysql> desc Product Customer Sales ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Sales' at line 1
+mysql> desc Producr;
+ERROR 1146 (42S02): Table 'PRODUCT.Producr' doesn't exist
+mysql> desc Product;
++--------------+---------------+------+-----+---------+-------+
+| Field        | Type          | Null | Key | Default | Extra |
++--------------+---------------+------+-----+---------+-------+
+| product_id   | int           | NO   | PRI | NULL    |       |
+| product_name | varchar(50)   | NO   |     | NULL    |       |
+| price        | decimal(10,2) | YES  |     | NULL    |       |
+| stock        | int           | YES  |     | NULL    |       |
++--------------+---------------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+
+mysql> desc Customer;
++---------------+-------------+------+-----+---------+-------+
+| Field         | Type        | Null | Key | Default | Extra |
++---------------+-------------+------+-----+---------+-------+
+| customer_id   | int         | NO   | PRI | NULL    |       |
+| customer_name | varchar(50) | NO   |     | NULL    |       |
+| email         | varchar(50) | YES  |     | NULL    |       |
+| phone         | varchar(15) | YES  |     | NULL    |       |
++---------------+-------------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+
+mysql> desc Sales;
++-------------+------+------+-----+---------+-------+
+| Field       | Type | Null | Key | Default | Extra |
++-------------+------+------+-----+---------+-------+
+| sale_id     | int  | NO   | PRI | NULL    |       |
+| customer_id | int  | YES  | MUL | NULL    |       |
+| product_id  | int  | YES  | MUL | NULL    |       |
+| quantity    | int  | YES  |     | NULL    |       |
+| sale_date   | date | YES  |     | NULL    |       |
++-------------+------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> CREATE DATABASE supermarket_3214;
+Query OK, 1 row affected (0.30 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| Abhinav_Sharma     |
+| PRODUCT            |
+| Praveen            |
+| QUerY              |
+| add3303            |
+| add54              |
+| asd                |
+| cc                 |
+| dd                 |
+| hms_db             |
+| hospital_db        |
+| information_schema |
+| libr               |
+| library3233        |
+| mock               |
+| movie              |
+| movie1             |
+| mysql              |
+| performance_schema |
+| practical          |
+| supermarket_3214   |
+| sys                |
++--------------------+
+22 rows in set (0.00 sec)
+
+mysql> use supermarket_3214;
+Database changed
+mysql> CREATE TABLE table_name (
+    ->     column1 datatype,
+    ->     column2 datatype,
+    ->     column3 datatype
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'datatype,
+    column2 datatype,
+    column3 datatype
+)' at line 2
+mysql> CREATE TABLE Product (
+    ->     product_id INT PRIMARY KEY,
+    ->     product_name VARCHAR(50) NOT NULL,
+    ->     price DECIMAL(10,2),
+    ->     stock INT
+    -> );
+Query OK, 0 rows affected (1.39 sec)
+
+mysql> CREATE TABLE Customer (
+    ->     customer_id INT PRIMARY KEY,
+    ->     customer_name VARCHAR(50) NOT NULL,
+    ->     email VARCHAR(50),
+    ->     phone VARCHAR(15)
+    -> );
+Query OK, 0 rows affected (1.79 sec)
+
+mysql> CREATE TABLE Sales (
+    ->     sale_id INT PRIMARY KEY,
+    ->     customer_id INT,
+    ->     product_id INT,
+    ->     quantity INT,
+    ->     sale_date DATE,
+    -> 
+    ->     FOREIGN KEY (customer_id) REFERENCES Customer(customer_id),
+    ->     FOREIGN KEY (product_id) REFERENCES Product(product_id)
+    -> );
+Query OK, 0 rows affected (2.00 sec)
+
+mysql> desc Product;
++--------------+---------------+------+-----+---------+-------+
+| Field        | Type          | Null | Key | Default | Extra |
++--------------+---------------+------+-----+---------+-------+
+| product_id   | int           | NO   | PRI | NULL    |       |
+| product_name | varchar(50)   | NO   |     | NULL    |       |
+| price        | decimal(10,2) | YES  |     | NULL    |       |
+| stock        | int           | YES  |     | NULL    |       |
++--------------+---------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> desc Sales;
++-------------+------+------+-----+---------+-------+
+| Field       | Type | Null | Key | Default | Extra |
++-------------+------+------+-----+---------+-------+
+| sale_id     | int  | NO   | PRI | NULL    |       |
+| customer_id | int  | YES  | MUL | NULL    |       |
+| product_id  | int  | YES  | MUL | NULL    |       |
+| quantity    | int  | YES  |     | NULL    |       |
+| sale_date   | date | YES  |     | NULL    |       |
++-------------+------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> desc Customer;
++---------------+-------------+------+-----+---------+-------+
+| Field         | Type        | Null | Key | Default | Extra |
++---------------+-------------+------+-----+---------+-------+
+| customer_id   | int         | NO   | PRI | NULL    |       |
+| customer_name | varchar(50) | NO   |     | NULL    |       |
+| email         | varchar(50) | YES  |     | NULL    |       |
+| phone         | varchar(15) | YES  |     | NULL    |       |
++---------------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> insert into Product
+    -> Values (101,Laptop,97999.00,10)
+    -> ;
+ERROR 1054 (42S22): Unknown column 'Laptop' in 'field list'
+mysql> nsert into Product
+    ->     -> Values (101,Laptop,97999.00,10)
+    -> nsert into Product
+[1]+  Stopped                 mysql
+root@admin1-ThinkCentre-M80:/home/admin1# mysql
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 13
+Server version: 8.0.42-0ubuntu0.20.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2025, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use database supermarket_3214;
+ERROR 1049 (42000): Unknown database 'database'
+mysql> use supermarket_3214;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> INSERT INTO Product
+    -> VALUES (101, 'Laptop', 55000.00, 10);
+Query OK, 1 row affected (0.10 sec)
+
+mysql> INSERT INTO Product (product_id, product_name, price, stock)
+    -> VALUES
+    -> (103, 'Headphones', 2000.00, 50),
+    -> (104, 'Keyboard', 1500.00, 30),
+    -> (105, 'Mouse', 800.00, 40);
+Query OK, 3 rows affected (0.14 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> 1, 'Aryan', 'aryan@gmail.com', '9876543210'
+[2]+  Stopped                 mysql
+root@admin1-ThinkCentre-M80:/home/admin1# mysql
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 14
+Server version: 8.0.42-0ubuntu0.20.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2025, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use supermarket_3214;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> INSERT INTO Customer (customer_id, customer_name, email, phone)
+    -> VALUES (1, 'Aryan', 'aryan@gmail.com', '9876543210');
+Query OK, 1 row affected (0.11 sec)
+
+mysql> INSERT INTO Customer (customer_id, customer_name, email, phone)
+    -> VALUES
+    -> (2, 'Rahul Sharma', 'rahul@gmail.com', '9123456780'),
+    -> (3, 'Neha Verma', 'neha@gmail.com', '9988776655'),
+    -> (4, 'Amit Singh', 'amit@gmail.com', '9012345678');
+Query OK, 3 rows affected (0.17 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> desc product
+    -> desc Product;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'desc Product' at line 2
+mysql> desc Product;
++--------------+---------------+------+-----+---------+-------+
+| Field        | Type          | Null | Key | Default | Extra |
++--------------+---------------+------+-----+---------+-------+
+| product_id   | int           | NO   | PRI | NULL    |       |
+| product_name | varchar(50)   | NO   |     | NULL    |       |
+| price        | decimal(10,2) | YES  |     | NULL    |       |
+| stock        | int           | YES  |     | NULL    |       |
++--------------+---------------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+
+mysql> desc Customer;
++---------------+-------------+------+-----+---------+-------+
+| Field         | Type        | Null | Key | Default | Extra |
++---------------+-------------+------+-----+---------+-------+
+| customer_id   | int         | NO   | PRI | NULL    |       |
+| customer_name | varchar(50) | NO   |     | NULL    |       |
+| email         | varchar(50) | YES  |     | NULL    |       |
+| phone         | varchar(15) | YES  |     | NULL    |       |
++---------------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> show table Product;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Product' at line 1
+mysql> show Product;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Product' at line 1
+mysql> SHOW TABLES;
++----------------------------+
+| Tables_in_supermarket_3214 |
++----------------------------+
+| Customer                   |
+| Product                    |
+| Sales                      |
++----------------------------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT * FROM Product;
++------------+--------------+----------+-------+
+| product_id | product_name | price    | stock |
++------------+--------------+----------+-------+
+|        101 | Laptop       | 55000.00 |    10 |
+|        103 | Headphones   |  2000.00 |    50 |
+|        104 | Keyboard     |  1500.00 |    30 |
+|        105 | Mouse        |   800.00 |    40 |
++------------+--------------+----------+-------+
+4 rows in set (0.00 sec)
+
+mysql> INSERT INTO Sales
+    -> (sale_id, customer_id, product_id, quantity, total_amount, sale_date)
+    -> VALUES
+    -> (1002, 2, 102, 2, 50000.00, '2026-01-27'),
+    -> (1003, 3, 103, 3, 6000.00, '2026-01-26'),
+    -> (1004, 1, 104, 1, 1500.00, '2026-01-25');
+ERROR 1054 (42S22): Unknown column 'total_amount' in 'field list'
+mysql> select *from Customer
+    -> 
+    -> select *from Customer;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'select *from Customer' at line 3
+mysql> select *from Customer;
++-------------+---------------+-----------------+------------+
+| customer_id | customer_name | email           | phone      |
++-------------+---------------+-----------------+------------+
+|           1 | Aryan         | aryan@gmail.com | 9876543210 |
+|           2 | Rahul Sharma  | rahul@gmail.com | 9123456780 |
+|           3 | Neha Verma    | neha@gmail.com  | 9988776655 |
+|           4 | Amit Singh    | amit@gmail.com  | 9012345678 |
++-------------+---------------+-----------------+------------+
+4 rows in set (0.00 sec)
+
+mysql> TRUNCATE TABLE Product;
+ERROR 1701 (42000): Cannot truncate a table referenced in a foreign key constraint (`supermarket_3214`.`Sales`, CONSTRAINT `Sales_ibfk_2`)
+mysql> TRUNCATE TABLE Customer;
+ERROR 1701 (42000): Cannot truncate a table referenced in a foreign key constraint (`supermarket_3214`.`Sales`, CONSTRAINT `Sales_ibfk_1`)
+mysql> TRUNCATE TABLE Sales;
+Query OK, 0 rows affected (2.29 sec)
+
+mysql> show tables;
++----------------------------+
+| Tables_in_supermarket_3214 |
++----------------------------+
+| Customer                   |
+| Product                    |
+| Sales                      |
++----------------------------+
+3 rows in set (0.00 sec)
+
+mysql> select *from Product;
++------------+--------------+----------+-------+
+| product_id | product_name | price    | stock |
++------------+--------------+----------+-------+
+|        101 | Laptop       | 55000.00 |    10 |
+|        103 | Headphones   |  2000.00 |    50 |
+|        104 | Keyboard     |  1500.00 |    30 |
+|        105 | Mouse        |   800.00 |    40 |
++------------+--------------+----------+-------+
+4 rows in set (0.00 sec)
+
+mysql> truncate table Product;
+ERROR 1701 (42000): Cannot truncate a table referenced in a foreign key constraint (`supermarket_3214`.`Sales`, CONSTRAINT `Sales_ibfk_2`)
+mysql> DELETE FROM Sales;
+DELETE FROM Customer;
+DELETE FROM Product;
+DELETE FROM Sales;
+^C
+mysql> DELETE FROM Customer;
+Query OK, 4 rows affected (0.16 sec)
+
+mysql> DELETE FROM Product;
+Query OK, 4 rows affected (0.14 sec)
+
+mysql> show tables;
++----------------------------+
+| Tables_in_supermarket_3214 |
++----------------------------+
+| Customer                   |
+| Product                    |
+| Sales                      |
++----------------------------+
+3 rows in set (0.00 sec)
+
+mysql> select *from Product
+    -> select *from Product;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'select *from Product' at line 2
+mysql> select *from Product;
+Empty set (0.01 sec)
+
+mysql> desc Product;
++--------------+---------------+------+-----+---------+-------+
+| Field        | Type          | Null | Key | Default | Extra |
++--------------+---------------+------+-----+---------+-------+
+| product_id   | int           | NO   | PRI | NULL    |       |
+| product_name | varchar(50)   | NO   |     | NULL    |       |
+| price        | decimal(10,2) | YES  |     | NULL    |       |
+| stock        | int           | YES  |     | NULL    |       |
++--------------+---------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> alter table Product add category ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> ALTER TABLE product
+    -> ADD category VARCHAR(50);
+ERROR 1146 (42S02): Table 'supermarket_3214.product' doesn't exist
+mysql> use database supermarket_3214;
+ERROR 1049 (42000): Unknown database 'database'
+mysql> use supermarket_3214;
+Database changed
+mysql> ALTER TABLE product
+    -> ADD category VARCHAR(50);
+ERROR 1146 (42S02): Table 'supermarket_3214.product' doesn't exist
+mysql> ALTER TABLE Product
+    -> ADD category VARCHAR(50);
+Query OK, 0 rows affected (2.16 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc Product
+    -> desc Product;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'desc Product' at line 2
+mysql> desc Product;
 +--------------+---------------+------+-----+---------+-------+
 | Field        | Type          | Null | Key | Default | Extra |
 +--------------+---------------+------+-----+---------+-------+
@@ -236,3 +731,1090 @@ mysql> select product_id,customer_id,quantity
 |        105 |           5 |       70 |
 +------------+-------------+----------+
 5 rows in set (0.00 sec)
+
+mysql> SELECT 
+    ->     c.customer_id,
+    ->     c.customer_name,
+    ->     p.product_id,
+    ->     p.product_name,
+    ->     p.price,
+    ->     s.quantity,
+    ->     s.total_amount,
+    ->     s.sale_date
+    -> FROM sales s
+    -> JOIN customer c
+    -> ON s.customer_id = c.customer_id
+    -> JOIN product p
+    -> ON s.product_id = p.product_id;
+ERROR 1146 (42S02): Table 'supermarket_3214.sales' doesn't exist
+mysql> SELECT 
+    ->     c.customer_id,
+    ->     c.customer_name,
+    ->     p.product_id,
+    ->     p.product_name,
+    ->     p.price,
+    ->     s.quantity,
+    ->     s.total_amount,
+    ->     s.sale_date
+    -> FROM Sales s
+    -> JOIN Customer c
+    -> ON s.customer_id = c.customer_id
+    -> JOIN product p
+    -> ON s.product_id = p.product_id;
+ERROR 1146 (42S02): Table 'supermarket_3214.product' doesn't exist
+mysql> SELECT 
+    ->     c.customer_id,
+    ->     c.customer_name,
+    ->     p.product_id,
+    ->     p.product_name,
+    ->     p.price,
+    ->     s.quantity,
+    ->     s.total_amount,
+    ->     s.sale_date
+    -> FROM Sales s
+    -> JOIN Customer c
+    -> ON s.customer_id = c.customer_id
+    -> JOIN product P
+    -> ON s.product_id = p.product_id;
+ERROR 1146 (42S02): Table 'supermarket_3214.product' doesn't exist
+mysql> SELECT 
+    ->     c.customer_id,
+    ->     c.customer_name,
+    ->     p.product_id,
+    ->     p.product_name,
+    ->     p.price,
+    ->     s.quantity,
+    ->     s.total_amount,
+    ->     s.sale_date
+    -> FROM Sales s
+    -> JOIN Customer c
+    -> ON s.customer_id = c.customer_id
+    -> JOIN Product p
+    -> ON s.product_id = p.product_id;
++-------------+---------------+------------+--------------+----------+----------+--------------+------------+
+| customer_id | customer_name | product_id | product_name | price    | quantity | total_amount | sale_date  |
++-------------+---------------+------------+--------------+----------+----------+--------------+------------+
+|           1 | Rahul Sharma  |        101 | Laptop       | 95000.00 |        3 |    285000.00 | 2026-01-10 |
+|           2 | Priya Verma   |        102 | Mobile Phone | 60000.00 |        4 |    240000.00 | 2026-01-12 |
+|           3 | Amit Patel    |        103 | Office Chair |  9500.00 |       14 |    133000.00 | 2026-01-15 |
+|           4 | Neha Singh    |        104 | Water Bottle |   500.00 |       14 |      7000.00 | 2026-01-18 |
+|           5 | Rohan Gupta   |        105 | Notebook     |    80.00 |       70 |      5600.00 | 2026-01-20 |
++-------------+---------------+------------+--------------+----------+----------+--------------+------------+
+5 rows in set (0.00 sec)
+
+mysql> sudo su
+    -> (base) admin1@admin1-ThinkCentre-M80:~$ sudo su
+    -> [sudo] password for admin1: 
+    -> root@admin1-ThinkCentre-M80:/home/admin1# my sql
+    -> my: command not found
+    -> root@admin1-ThinkCentre-M80:/home/admin1# mysql
+    -> Welcome to the MySQL monitor.  Commands end with ; or \g.
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'sudo su
+(base) admin1@admin1-ThinkCentre-M80:~$ sudo su
+[sudo] password for admi' at line 1
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'or' at line 1
+    -> Your MySQL connection id is 8
+    -> Server version: 8.0.42-0ubuntu0.20.04.1 (Ubuntu)
+--    -> 
+    -> Copyright (c) 2000, 2025, Oracle and/or its affiliates.
+    -> 
+s    -> Oracle is a registered trademark of Oracle Corporation and/or its
+    -> affiliates. Other names may be trademarks of their respective
+    -> owners.
+    -> 
+e    -> Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+    -> 
+    -> mysql> show databases
+    ->     -> show databases;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '.
+Your MySQL connection id is 8
+Server version: 8.0.42-0ubuntu0.20.04.1 (Ubuntu)' at line 1
+mysql> ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'show databases' at line 2
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ERROR 1064 (42000): You have an error in your SQL syntax' at line 1
+    -> mysql> show databases;
+  ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'the manual that corresponds to your MySQL server version for the right syntax to' at line 1
+mysql> +--------------------+
+    -> | Database           |
+    -> +--------------------+
+    -> | Abhinav_Sharma     |
+    -> | Praveen            |
+    -> | QUerY              |
+-    -> | add3303            |
+-    -> | add54              |
+    -> | asd                |
+    -> | cc                 |
+    -> | dd                 |
+    -> | hms_db             |
+    -> | hospital_db        |
+    -> | information_schema |
+    -> | libr               |
+    -> | library3233        |
+    -> | mock               |
+    -> | movie              |
+    -> | movie1             |
+q    -> | mysql              |
+S    -> | performance_schema |
+    -> | practical          |
+    -> | sys                |
+    -> +--------------------+
+    -> 20 rows in set (0.04 sec)
++-    -> 
+    -> mysql> create database;
+ ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '+--------------------+
+| Database           |
++--------------------+
+| Abhinav_S' at line 1
+mysql> ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ERROR 1064 (42000): You have an error in your SQL syntax' at line 1
+    -> mysql> create database
+    ->     -> aryan
+    ->     -> 
+    ->     -> 
+    ->     -> CREATE DATABASE student_db;
+ ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'the manual that corresponds to your MySQL server version for the right syntax to' at line 1
+mysql> ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'CREATE DATABASE student_db' at line 5
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ERROR 1064 (42000): You have an error in your SQL syntax' at line 1
+    -> mysql> CREATE DATABASE PRODUCT;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'the manual that corresponds to your MySQL server version for the right syntax to' at line 1
+mysql> Query OK, 1 row affected (0.22 sec)
+    -> 
+    -> mysql> show databases;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Query OK, 1 row affected (0.22 sec)
+
+mysql> show databases' at line 1
+mysql> +--------------------+
+    -> | Database           |
+    -> +--------------------+
+    -> | Abhinav_Sharma     |
+    -> | PRODUCT            |
+    -> | Praveen            |
+    -> | QUerY              |
+    -> | add3303            |
+    -> | add54              |
+    -> | asd                |
+    -> | cc                 |
+    -> | dd                 |
+    -> | hms_db             |
+    -> | hospital_db        |
+    -> | information_schema |
+    -> | libr               |
+    -> | library3233        |
+    -> | mock               |
+    -> | movie              |
+    -> | movie1             |
+    -> | mysql              |
+    -> | performance_schema |
+     -> | practical          |
+    -> | sys                |
+    -> +--------------------+
+    -> 21 rows in set (0.01 sec)
+    -> 
+    -> mysql> CREATE TABLE Market Table;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '+--------------------+
+| Database           |
++--------------------+
+| Abhinav_S' at line 1
+mysql> ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ERROR 1064 (42000): You have an error in your SQL syntax' at line 1
+    -> mysql> use PRODUCT
+    -> Database changed
+    -> mysql> CREATE TABLE Product (
+    ->     ->     product_id INT PRIMARY KEY,
+    ->     ->     product_name VARCHAR(50) NOT NULL,
+    ->     ->     price DECIMAL(10,2),
+    ->     ->     stock INT
+    ->     -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'the manual that corresponds to your MySQL server version for the right syntax to' at line 1
+mysql> Query OK, 0 rows affected (1.04 sec)
+    -> 
+    -> mysql> CREATE TABLE Customer (
+    ->     ->     customer_id INT PRIMARY KEY,
+    ->     ->     customer_name VARCHAR(50) NOT NULL,
+    ->     ->     email VARCHAR(50),
+    ->     ->     phone VARCHAR(15)
+    ->     -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Query OK, 0 rows affected (1.04 sec)
+
+mysql> CREATE TABLE Customer (
+    ->     ' at line 1
+mysql> Query OK, 0 rows affected (1.82 sec)
+    -> 
+    -> mysql> CREATE TABLE Sales (
+    ->     ->     sale_id INT PRIMARY KEY,
+    ->     ->     customer_id INT,
+    ->     ->     product_id INT,
+    ->     ->     quantity INT,
+    ->     ->     sale_date DATE,
+    ->     -> 
+    ->     ->     FOREIGN KEY (customer_id) REFERENCES Customer(customer_id),
+    ->     ->     FOREIGN KEY (product_id) REFERENCES Product(product_id)
+    ->     -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Query OK, 0 rows affected (1.82 sec)
+
+mysql> CREATE TABLE Sales (
+    ->     sal' at line 1
+mysql> Query OK, 0 rows affected (1.13 sec)
+    -> 
+    -> mysql> desc Product Customer Sales ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Query OK, 0 rows affected (1.13 sec)
+
+mysql> desc Product Customer Sales' at line 1
+mysql> ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Sales' at line 1
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ERROR 1064 (42000): You have an error in your SQL syntax' at line 1
+    -> mysql> desc Producr;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'the manual that corresponds to your MySQL server version for the right syntax to' at line 1
+mysql> ERROR 1146 (42S02): Table 'PRODUCT.Producr' doesn't exist
+    '> mysql> desc Product;
+    '> +--------------+---------------+------+-----+---------+-------+
+    '> | Field        | Type          | Null | Key | Default | Extra |
+    '> +--------------+---------------+------+-----+---------+-------+
+    '> | product_id   | int           | NO   | PRI | NULL    |       |
+    '> | product_name | varchar(50)   | NO   |     | NULL    |       |
+    '> | price        | decimal(10,2) | YES  |     | NULL    |       |
+    '> | stock        | int           | YES  |     | NULL    |       |
+    '> +--------------+---------------+------+-----+---------+-------+
+    '> 4 rows in set (0.01 sec)
+    '> 
+    '> mysql> desc Customer;
+    '> +---------------+-------------+------+-----+---------+-------+
+    '> | Field         | Type        | Null | Key | Default | Extra |
+    '> +---------------+-------------+------+-----+---------+-------+
+    '> | customer_id   | int         | NO   | PRI | NULL    |       |
+    '> | customer_name | varchar(50) | NO   |     | NULL    |       |
+    '> | email         | varchar(50) | YES  |     | NULL    |       |
+    '> | phone         | varchar(15) | YES  |     | NULL    |       |
+    '> +---------------+-------------+------+-----+---------+-------+
+    '> 4 rows in set (0.01 sec)
+    '> 
+     '> mysql> desc Sales;
+    '> +-------------+------+------+-----+---------+-------+
+    '> | Field       | Type | Null | Key | Default | Extra |
+    '> +-------------+------+------+-----+---------+-------+
+    '> | sale_id     | int  | NO   | PRI | NULL    |       |
+    '> | customer_id | int  | YES  | MUL | NULL    |       |
+    '> | product_id  | int  | YES  | MUL | NULL    |       |
+    '> | quantity    | int  | YES  |     | NULL    |       |
+    '> | sale_date   | date | YES  |     | NULL    |       |
+n id is 13
+Server version: 8.0.42-0ubuntu0.20.04.1    '> +-------------+------+------+-----+---------+-------+
+    '> 5 rows in set (0.00 sec)
+    '> 
+    '> mysql> CREATE DATABASE supermarket_3214;
+o    '> Query OK, 1 row affected (0.30 sec)
+    '> 
+     '> mysql> show databases;
+    '> +--------------------+
+    '> | Database           |
+    '> +--------------------+
+    '> | Abhinav_Sharma     |
+t input     '> | PRODUCT            |
+    '> | Praveen            |
+    '> database supermarket_32| QUerY              |
+;
+ERROR 1049 (42000):    '> | add3303            |
+a    '> | add54              |
+erm    '> | asd                |
+    '> | cc                 |
+    '> | dd                 |
+    '> | hms_db             |
+    '> | hospital_db        |
+t    '> | information_schema |
+    '> | libr               |
+    '> | library3233        |
+    '> | mock               |
+    '> | movie              |
+    '> | movie1             |
+c    '> | mysql              |
+    '> | performance_schema |
+    '> | practical          |
+    '> | supermarket_3214   |
+V    '> | sys                |
+    '> +--------------------+
+    '> 22 rows in set (0.00 sec)
+    '> 
+1    '> mysql> use supermarket_3214;
+o    '> Database changed
+    '> mysql> CREATE TABLE table_name (
+4    '>     ->     column1 datatype,
+    '>     ->     column2 datatype,
+    '>     ->     column3 datatype
+    '>     -> );
+'    '> ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'datatype,
+     ->     column2 datatype,
+    ->     column3 datatype
+    -> )' at line 2
+    '> mysql> CREATE TABLE Product (
+    '>     ->     product_id INT PRIMARY KEY,
+    '>     ->     product_name VARCHAR(50) NOT NULL,
+    '>     ->     price DECIMAL(10,2),
+    '>     ->     stock INT
+    '>     -> );
+    '> Query OK, 0 rows affected (1.39 sec)
+    '> 
+h    '> mysql> CREATE TABLE Customer (
+    '>     ->     customer_id INT PRIMARY KEY,
+e    '>     ->     customer_name VARCHAR(50) NOT NULL,
+    '>     ->     email VARCHAR(50),
+    '>     ->     phone VARCHAR(15)
+i    '>     -> );
+    '> Query OK, 0 rows affected (1.79 sec)
+    '> 
+    '> mysql> CREATE TABLE Sales (
+    '>     ->     sale_id INT PRIMARY KEY,
+    '>     ->     customer_id INT,
+    '>     ->     product_id INT,
+    '>     ->     quantity INT,
+    '>     ->     sale_date DATE,
+    '>     -> 
+    '>     ->     FOREIGN KEY (customer_id) REFERENCES Customer(customer_id),
+    '>     ->     FOREIGN KEY (product_id) REFERENCES Product(product_id)
+2    '>     -> );
+    '> Query OK, 0 rows affected (2.00 sec)
+    '> 
+    '> mysql> desc Product;
+    '> +--------------+---------------+------+-----+---------+-------+
+    '> | Field        | Type          | Null | Key | Default | Extra |
+    '> +--------------+---------------+------+-----+---------+-------+
+    '> | product_id   | int           | NO   | PRI | NULL    |       |
+    '> | product_name | varchar(50)   | NO   |     | NULL    |       |
+    '> | price        | decimal(10,2) | YES  |     | NULL    |       |
+    '> | stock        | int           | YES  |     | NULL    |       |
+    '> +--------------+---------------+------+-----+---------+-------+
+    '> 4 rows in set (0.00 sec)
+    '> 
+    '> mysql> desc Sales;
+    '> +-------------+------+------+-----+---------+-------+
+    '> | Field       | Type | Null | Key | Default | Extra |
+    '> +-------------+------+------+-----+---------+-------+
+    '> | sale_id     | int  | NO   | PRI | NULL    |       |
+    '> | customer_id | int  | YES  | MUL | NULL    |       |
+    '> | product_id  | int  | YES  | MUL | NULL    |       |
+    '> | quantity    | int  | YES  |     | NULL    |       |
+    '> | sale_date   | date | YES  |     | NULL    |       |
+    '> +-------------+------+------+-----+---------+-------+
+    '> 5 rows in set (0.00 sec)
+    '> 
+    '> mysql> desc Customer;
+    '> +---------------+-------------+------+-----+---------+-------+
+    '> | Field         | Type        | Null | Key | Default | Extra |
+    '> +---------------+-------------+------+-----+---------+-------+
+    '> | customer_id   | int         | NO   | PRI | NULL    |       |
+    '> | customer_name | varchar(50) | NO   |     | NULL    |       |
+    '> | email         | varchar(50) | YES  |     | NULL    |       |
+s    '> | phone         | varchar(15) | YES  |     | NULL    |       |
+    '> +---------------+-------------+------+-----+---------+-------+
+    '> 4 rows in set (0.00 sec)
+    '> 
+    '> mysql> insert into Product
+    '>     -> Values (101,Laptop,97999.00,10)
+    '>     -> ;
+    '> ERROR 1054 (42S22): Unknown column 'Laptop' in 'field list'
+    '> mysql> nsert into Product
+    '>     ->     -> Values (101,Laptop,97999.00,10)
+    '>     -> nsert into Product
+    '> [1]+  Stopped                 mysql
+    '> root@admin1-ThinkCentre-M80:/home/admin1# mysql
+    '> Welcome to the MySQL monitor.  Commands end with ; or \g.
+    '> Your MySQL connection id is 13
+    '> Server version: 8.0.42-0ubuntu0.20.04.1 (Ubuntu)
+    '> 
+    '> Copyright (c) 2000, 2025, Oracle and/or its affiliates.
+    '> 
+    '> Oracle is a registered trademark of Oracle Corporation and/or its
+    '> affiliates. Other names may be trademarks of their respective
+    '> owners.
+    '> 
+    '> Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ERROR 1146 (42S02): Table 'PRODUCT.Producr' doesn't exist
+mysql> desc Product;
++' at line 1
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '\c' to clear the current input statement.'' at line 1
+    -> 
+    -> mysql> use database supermarket_3214;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' or '
+
+mysql> use database supermarket_3214' at line 1
+mysql> ERROR 1049 (42000): Unknown database 'database'
+    -> mysql> use supermarket_3214;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ERROR 1049 (42000): Unknown database 'database'
+mysql> use supermarket_3214' at line 1
+mysql> Reading table information for completion of table and column names
+    -> You can turn off this feature to get a quicker startup with -A
+    -> 
+    -> Database changed
+    -> mysql> INSERT INTO Product
+    ->     -> VALUES (101, 'Laptop', 55000.00, 10);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Reading table information for completion of table and column names
+You can turn ' at line 1
+mysql> Query OK, 1 row affected (0.10 sec)
+    -> 
+    -> mysql> INSERT INTO Product (product_id, product_name, price, stock)
+    ->     -> VALUES
+     ->     -> (103, 'Headphones', 2000.00, 50),
+    ->     -> (104, 'Keyboard', 1500.00, 30),
+    ->     -> (105, 'Mouse', 800.00, 40);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Query OK, 1 row affected (0.10 sec)
+
+mysql> INSERT INTO Product (product_id, pro' at line 1
+mysql> Query OK, 3 rows affected (0.14 sec)
+    -> Records: 3  Duplicates: 0  Warnings: 0
+    -> 
+    -> mysql> 1, 'Aryan', 'aryan@gmail.com', '9876543210'
+    -> [2]+  Stopped                 mysql
+v    -> root@admin1-ThinkCentre-M80:/home/admin1# mysql
+    -> Welcome to the MySQL monitor.  Commands end with ; or \g.
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Query OK, 3 rows affected (0.14 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mys' at line 1
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'or' at line 1
+    -> Your MySQL connection id is 14
+    -> Server version: 8.0.42-0ubuntu0.20.04.1 (Ubuntu)
+    -> 
+t    -> Copyright (c) 2000, 2025, Oracle and/or its affiliates.
+    -> 
+    -> Oracle is a registered trademark of Oracle Corporation and/or its
+    -> affiliates. Other names may be trademarks of their respective
+    -> owners.
+    -> 
+    -> Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+    -> 
+    -> mysql> use supermarket_3214;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '.
+Your MySQL connection id is 14
+Server version: 8.0.42-0ubuntu0.20.04.1 (Ubuntu' at line 1
+mysql> Reading table information for completion of table and column names
+    -> You can turn off this feature to get a quicker startup with -A
+    -> 
+    -> Database changed
+    -> mysql> INSERT INTO Customer (customer_id, customer_name, email, phone)
+    ->     -> VALUES (1, 'Aryan', 'aryan@gmail.com', '9876543210');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Reading table information for completion of table and column names
+You can turn ' at line 1
+mysql> Query OK, 1 row affected (0.11 sec)
+    -> 
+    -> mysql> INSERT INTO Customer (customer_id, customer_name, email, phone)
+    ->     -> VALUES
+    ->     -> (2, 'Rahul Sharma', 'rahul@gmail.com', '9123456780'),
+    ->     -> (3, 'Neha Verma', 'neha@gmail.com', '9988776655'),
+ O    ->     -> (4, 'Amit Singh', 'amit@gmail.com', '9012345678');
+-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Query OK, 1 row affected (0.11 sec)
+
+mysql> INSERT INTO Customer (customer_id, c' at line 1
+mysql> Query OK, 3 rows affected (0.17 sec)
+    -> Records: 3  Duplicates: 0  Warnings: 0
+-    -> 
+    -> mysql> desc product
+    ->     -> desc Product;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Query OK, 3 rows affected (0.17 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mys' at line 1
+mysql> ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'desc Product' at line 2
+            |
+| Product                    |
+| Sales                      |
++----------------------------+
+3 rows in set (0.00 sec)
+
+mysql> select *from Product;
++------------+--------------+---ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ERROR 1064 (42000): You have an error in your SQL syntax' at line 1
+    -> mysql> desc Product;
+rERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'the manual that corresponds to your MySQL server version for the right syntax to' at line 1
+mysql> +--------------+---------------+------+-----+---------+-------+
+    -> | Field        | Type          | Null | Key | Default | Extra |
+    -> +--------------+---------------+------+-----+---------+-------+
+    -> | product_id   | int           | NO   | PRI | NULL    |       |
+    -> | product_name | varchar(50)   | NO   |     | NULL    |       |
+    -> | price        | decimal(10,2) | YES  |     | NULL    |       |
+    -> | stock        | int           | YES  |     | NULL    |       |
++------------+--------------+----------+-------+
+4 rows in set (0.00 sec)
+
+mysql> truncate table Product;
+ERROR 1701 (42000): Cannot truncate a table referenc    -> +--------------+---------------+------+-----+---------+-------+
+    -> 4 rows in set (0.01 sec)
+y    -> 
+    -> mysql> desc Customer;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '+--------------+---------------+------+-----+---------+-------+
+| Field        |' at line 1
+mysql> +---------------+-------------+------+-----+---------+-------+
+    -> | Field         | Type        | Null | Key | Default | Extra |
+    -> +---------------+-------------+------+-----+---------+-------+
+    -> | customer_id   | int         | NO   | PRI | NULL    |       |
+    -> | customer_name | varchar(50) | NO   |     | NULL    |       |
+    -> | email         | varchar(50) | YES  |     | NULL    |       |
+    -> | phone         | varchar(15) | YES  |     | NULL    |       |
+w    -> +---------------+-------------+------+-----+---------+-------+
+     -> 4 rows in set (0.00 sec)
+    -> 
+    -> mysql> show table Product;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '+---------------+-------------+------+-----+---------+-------+
+| Field         |' at line 1
+mysql> ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Product' at line 1
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ERROR 1064 (42000): You have an error in your SQL syntax' at line 1
+    -> mysql> show Product;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'the manual that corresponds to your MySQL server version for the right syntax to' at line 1
+mysql> ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Product' at line 1
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ERROR 1064 (42000): You have an error in your SQL syntax' at line 1
+    -> mysql> SHOW TABLES;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'the manual that corresponds to your MySQL server version for the right syntax to' at line 1
+mysql> +----------------------------+
+    -> | Tables_in_supermarket_3214 |
+    -> +----------------------------+
+    -> | Customer                   |
+    -> | Product                    |
+    -> | Sales                      |
+    -> +----------------------------+
+    -> 3 rows in set (0.00 sec)
+    -> 
+     -> mysql> SELECT * FROM Product;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '+----------------------------+
+| Tables_in_supermarket_3214 |
++-----------------' at line 1
+mysql> +------------+--------------+----------+-------+
+    -> | product_id | product_name | price    | stock |
+m    -> +------------+--------------+----------+-------+
+    -> |        101 | Laptop       | 55000.00 |    10 |
+    -> |        103 | Headphones   |  2000.00 |    50 |
+    -> |        104 | Keyboard     |  1500.00 |    30 |
+    -> |        105 | Mouse        |   800.00 |    40 |
+    -> +------------+--------------+----------+-------+
+    -> 4 rows in set (0.00 sec)
+uct    -> 
+    -> mysql> INSERT INTO Sales
+e    ->     -> (sale_id, customer_id, product_id, quantity, total_amount, sale_date)
+    ->     -> VALUES
+    ->     -> (1002, 2, 102, 2, 50000.00, '2026-01-27'),
+    ->     -> (1003, 3, 103, 3, 6000.00, '2026-01-26'),
+1    ->     -> (1004, 1, 104, 1, 1500.00, '2026-01-25');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '+------------+--------------+----------+-------+
+| product_id | product_name | p' at line 1
+mysql> ERROR 1054 (42S22): Unknown column 'total_amount' in 'field list'
+    -> mysql> select *from Customer
+    ->     -> 
+    ->     -> select *from Customer;
+ ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ERROR 1054 (42S22): Unknown column 'total_amount' in 'field list'
+mysql> select ' at line 1
+mysql> ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'select *from Customer' at line 3
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ERROR 1064 (42000): You have an error in your SQL syntax' at line 1
+    -> mysql> select *from Customer;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'the manual that corresponds to your MySQL server version for the right syntax to' at line 1
+mysql> +-------------+---------------+-----------------+------------+
+    -> | customer_id | customer_name | email           | phone      |
+    -> +-------------+---------------+-----------------+------------+
+    -> |           1 | Aryan         | aryan@gmail.com | 9876543210 |
+    -> |           2 | Rahul Sharma  | rahul@gmail.com | 9123456780 |
+    -> |           3 | Neha Verma    | neha@gmail.com  | 9988776655 |
+    -> |           4 | Amit Singh    | amit@gmail.com  | 9012345678 |
+    -> +-------------+---------------+-----------------+------------+
+    -> 4 rows in set (0.00 sec)
+    -> 
+    -> mysql> TRUNCATE TABLE Product;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '+-------------+---------------+-----------------+------------+
+| customer_id | c' at line 1
+mysql> ERROR 1701 (42000): Cannot truncate a table referenced in a foreign key constraint (`supermarket_3214`.`Sales`, CONSTRAINT `Sales_ibfk_2`)
+    -> mysql> TRUNCATE TABLE Customer;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ERROR 1701 (42000): Cannot truncate a table referenced in a foreign key constrai' at line 1
+mysql> ERROR 1701 (42000): Cannot truncate a table referenced in a foreign key constraint (`supermarket_3214`.`Sales`, CONSTRAINT `Sales_ibfk_1`)
+    -> mysql> TRUNCATE TABLE Sales;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ERROR 1701 (42000): Cannot truncate a table referenced in a foreign key constrai' at line 1
+mysql> Query OK, 0 rows affected (2.29 sec)
+    -> 
+    -> mysql> show tables;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Query OK, 0 rows affected (2.29 sec)
+
+mysql> show tables' at line 1
+mysql> +----------------------------+
+    -> | Tables_in_supermarket_3214 |
+    -> +----------------------------+
+    -> | Customer                   |
+     -> | Product                    |
+    -> | Sales                      |
+    -> +----------------------------+
+    -> 3 rows in set (0.00 sec)
+    -> 
+    -> mysql> select *from Product;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '+----------------------------+
+| Tables_in_supermarket_3214 |
++-----------------' at line 1
+mysql> +------------+--------------+----------+-------+
+    -> | product_id | product_name | price    | stock |
+    -> +------------+--------------+----------+-------+
+    -> |        101 | Laptop       | 55000.00 |    10 |
+    -> |        103 | Headphones   |  2000.00 |    50 |
+    -> |        104 | Keyboard     |  1500.00 |    30 |
+    -> |        105 | Mouse        |   800.00 |    40 |
+    -> +------------+--------------+----------+-------+
+    -> 4 rows in set (0.00 sec)
+    -> 
+    -> mysql> truncate table Product;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '+------------+--------------+----------+-------+
+| product_id | product_name | p' at line 1
+mysql> ERROR 1701 (42000): Cannot truncate a table referenced in a foreign key constraint (`supermarket_3214`.`Sales`, CONSTRAINT `Sales_ibfk_2`)
+    -> mysql> DELETE FROM Sales;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ERROR 1701 (42000): Cannot truncate a table referenced in a foreign key constrai' at line 1
+mysql> DELETE FROM Customer;
+ERROR 1451 (23000): Cannot delete or update a parent row: a foreign key constraint fails (`supermarket_3214`.`Sales`, CONSTRAINT `Sales_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `Customer` (`customer_id`))
+mysql> DELETE FROM Product;
+ERROR 1451 (23000): Cannot delete or update a parent row: a foreign key constraint fails (`supermarket_3214`.`Sales`, CONSTRAINT `Sales_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `Product` (`product_id`))
+mysql> DELETE FROM Sales;
+Query OK, 5 rows affected (0.17 sec)
+
+mysql> ^C
+    -> mysql> DELETE FROM Customer;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '^C
+mysql> DELETE FROM Customer' at line 1
+mysql> Query OK, 4 rows affected (0.16 sec)
+    -> 
+    -> mysql> DELETE FROM Product;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Query OK, 4 rows affected (0.16 sec)
+
+mysql> DELETE FROM Product' at line 1
+mysql> Query OK, 4 rows affected (0.14 sec)
+    -> 
+    -> mysql> show tables;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Query OK, 4 rows affected (0.14 sec)
+
+mysql> show tables' at line 1
+mysql> +----------------------------+
+    -> | Tables_in_supermarket_3214 |
+    -> +----------------------------+
+|    -> | Customer                   |
+    -> | Product                    |
+    -> | Sales                      |
+    -> +----------------------------+
+    -> 3 rows in set (0.00 sec)
+    -> 
+    -> mysql> select *from Product
+    ->     -> select *from Product;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '+----------------------------+
+| Tables_in_supermarket_3214 |
++-----------------' at line 1
+mysql> ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'select *from Product' at line 2
+RERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ERROR 1064 (42000): You have an error in your SQL syntax' at line 1
+    -> mysql> select *from Product;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'the manual that corresponds to your MySQL server version for the right syntax to' at line 1
+mysql> Empty set (0.01 sec)
+    -> 
+    -> mysql> desc Product;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Empty set (0.01 sec)
+
+mysql> desc Product' at line 1
+mysql> +--------------+---------------+------+-----+---------+-------+
+    -> | Field        | Type          | Null | Key | Default | Extra |
+    -> +--------------+---------------+------+-----+---------+-------+
+    -> | product_id   | int           | NO   | PRI | NULL    |       |
+    -> | product_name | varchar(50)   | NO   |     | NULL    |       |
+    -> | price        | decimal(10,2) | YES  |     | NULL    |       |
+    -> | stock        | int           | YES  |     | NULL    |       |
+    -> +--------------+---------------+------+-----+---------+-------+
+    -> 4 rows in set (0.00 sec)
+    -> 
+    -> mysql> alter table Product add category ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '+--------------+---------------+------+-----+---------+-------+
+| Field        |' at line 1
+fice Chamysql> ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ERROR 1064 (42000): You have an error in your SQL syntax' at line 1
+    -> mysql> ALTER TABLE product
+    ->     -> ADD category VARCHAR(50);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'the manual that corresponds to your MySQL server version for the right syntax to' at line 1
+mysql> ERROR 1146 (42S02): Table 'supermarket_3214.product' doesn't exist
+    '> mysql> use database supermarket_3214;
+    '> ERROR 1049 (42000): Unknown database 'database'
+    '> mysql> use supermarket_3214;
+    '> Database changed
+    '> mysql> ALTER TABLE product
+    '>     -> ADD category VARCHAR(50);
+    '> ERROR 1146 (42S02): Table 'supermarket_3214.product' doesn't exist
+    -> mysql> ALTER TABLE Product
+    ->     -> ADD category VARCHAR(50);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ERROR 1146 (42S02): Table 'supermarket_3214.product' doesn't exist
+mysql> use da' at line 1
+mysql> Query OK, 0 rows affected (2.16 sec)
+    -> Records: 0  Duplicates: 0  Warnings: 0
+    -> 
+    -> mysql> desc Product
+    ->     -> desc Product;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Query OK, 0 rows affected (2.16 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mys' at line 1
+mysql> ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'desc Product' at line 2
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ERROR 1064 (42000): You have an error in your SQL syntax' at line 1
+    -> mysql> desc Product;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'the manual that corresponds to your MySQL server version for the right syntax to' at line 1
+mysql> +--------------+---------------+------+-----+---------+-------+
+    -> | Field        | Type          | Null | Key | Default | Extra |
+    -> +--------------+---------------+------+-----+---------+-------+
+    -> | product_id   | int           | NO   | PRI | NULL    |       |
+    -> | product_name | varchar(50)   | NO   |     | NULL    |       |
+    -> | price        | decimal(10,2) | YES  |     | NULL    |       |
+    -> | stock        | int           | YES  |     | NULL    |       |
+    -> | category     | varchar(50)   | YES  |     | NULL    |       |
+     -> +--------------+---------------+------+-----+---------+-------+
+    -> 5 rows in set (0.00 sec)
+    -> 
+    -> mysql> desc Customer;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '+--------------+---------------+------+-----+---------+-------+
+| Field        |' at line 1
+mysql> +---------------+-------------+------+-----+---------+-------+
+    -> | Field         | Type        | Null | Key | Default | Extra |
+    -> +---------------+-------------+------+-----+---------+-------+
+    -> | customer_id   | int         | NO   | PRI | NULL    |       |
+    -> | customer_name | varchar(50) | NO   |     | NULL    |       |
+    -> | email         | varchar(50) | YES  |     | NULL    |       |
+    -> | phone         | varchar(15) | YES  |     | NULL    |       |
+    -> +---------------+-------------+------+-----+---------+-------+
+    -> 4 rows in set (0.00 sec)
+    -> 
+    -> mysql> desc Sales;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '+---------------+-------------+------+-----+---------+-------+
+| Field         |' at line 1
+mysql> +-------------+------+------+-----+---------+-------+
+    -> | Field       | Type | Null | Key | Default | Extra |
+    -> +-------------+------+------+-----+---------+-------+
+    -> | sale_id     | int  | NO   | PRI | NULL    |       |
+    -> | customer_id | int  | YES  | MUL | NULL    |       |
+ustom    -> | product_id  | int  | YES  | MUL | NULL    |       |
+    -> | quantity    | int  | YES  |     | NULL    |       |
+    -> | sale_date   | date | YES  |     | NULL    |       |
+    -> +-------------+------+------+-----+---------+-------+
+    -> 5 rows in set (0.00 sec)
+    -> 
+    -> mysql> alter table Sales
+    ->     -> add total_amount float(10,2);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '+-------------+------+------+-----+---------+-------+
+| Field       | Type | Nul' at line 1
+mysql> Query OK, 0 rows affected, 1 warning (2.57 sec)
+    -> Records: 0  Duplicates: 0  Warnings: 1
+    -> 
+    -> mysql> desc Sales;
+plicaERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Query OK, 0 rows affected, 1 warning (2.57 sec)
+Records: 0  Duplicates: 0  Warni' at line 1
+mysql> +--------------+-------------+------+-----+---------+-------+
+--    -> | Field        | Type        | Null | Key | Default | Extra |
+    -> +--------------+-------------+------+-----+---------+-------+
+     -> | sale_id      | int         | NO   | PRI | NULL    |       |
+---    -> | customer_id  | int         | YES  | MUL | NULL    |       |
+    -> | product_id   | int         | YES  | MUL | NULL    |       |
+    -> | quantity     | int         | YES  |     | NULL    |       |
+    -> | sale_date    | date        | YES  |     | NULL    |       |
+    -> | total_amount | float(10,2) | YES  |     | NULL    |       |
+    -> +--------------+-------------+------+-----+---------+-------+
+    -> 6 rows in set (0.00 sec)
+    -> 
+    -> mysql> INSERT INTO product (product_id, product_name, price, stock, category)
+y    ->     -> VALUES
+    ->     -> (101, 'Laptop', 95000.00, 67, 'Electronics'),
+    ->     -> (102, 'Mobile Phone', 60000.00, 29, 'Electronics'),
+    ->     -> (103, 'Office Chair', 9500.00, 76, 'Furniture'),
+E    ->     -> (104, 'Water Bottle', 500.00, 50, 'Accessories'),
+     ->     -> (105, 'Notebook', 80.00, 200, 'Stationery');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '+--------------+-------------+------+-----+---------+-------+
+| Field        | T' at line 1
+mysql> ERROR 1146 (42S02): Table 'supermarket_3214.product' doesn't exist
+    '> mysql> INSERT INTO Product (product_id, product_name, price, stock, category)
+    '>     -> VALUES
+    '>     -> (101, 'Laptop', 95000.00, 67, 'Electronics'),
+    '>     -> (102, 'Mobile Phone', 60000.00, 29, 'Electronics'),
+-    '>     -> (103, 'Office Chair', 9500.00, 76, 'Furniture'),
+    '>     -> (104, 'Water Bottle', 500.00, 50, 'Accessories'),
+    '>     -> (105, 'Notebook', 80.00, 200, 'Stationery');
+    '> Query OK, 5 rows affected (0.16 sec)
+    '> Records: 5  Duplicates: 0  Warnings: 0
+    '> 
+|    '> mysql> INSERT INTO Customer (customer_id, customer_name, email, phone)
+    '> VALUES
+    '> (1, 'Rahul Sharma', 'rahul@gmail.com', '9876543210'),
+    '> (2, 'Priya Verma', 'priya@gmail.com', '9123456780'),
+    '> (3, 'Amit Patel', 'amit@gmail.com', '9988776655'),
+    '> (4, 'Neha SinghI', NULL, '9012345678'),
+    '> (5, 'Rohan Gupta', 'rohan@gmail.com', NULL);NSERT INTO Customer (customer_id, customer_name, email, phone)
+-    '> ^C
+    '> mysql> VALUES
+    '>     -> (1, 'Rahul Sharma', 'rahul@gmail.com', '9876543210'),
+    '>     -> (2, 'Priya Verma', 'priya@gmail.com', '9123456780'),
+    '>     -> (3, 'Amit Patel', 'amit@gmail.com', '9988776655'),
+    '>     -> (4, 'Neha Singh', NULL, '9012345678'),
+    '>     -> 
+     '>     -> ;
+    '> ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(1, 'Rahul Sharma', 'rahul@gmail.com', '9876543210'),
+    -> (2, 'Priya Verma', 'priya@' at line 2
+    -> mysql> INSERT INTO Customer (customer_id, customer_name, email, phone)
+    ->     -> VALUES
+    ->     -> (1, 'Rahul Sharma', 'rahul@gmail.com', '9876543210'),
+    ->     -> (2, 'Priya Verma', 'priya@gmail.com', '9123456780'),
+    ->     -> (3, 'Amit Patel', 'amit@gmail.com', '9988776655'),
+    ->     -> (4, 'Neha Singh', NULL, '9012345678'),
+    ->     -> (5, 'Rohan Gupta', 'rohan@gmail.com', NULL);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ERROR 1146 (42S02): Table 'supermarket_3214.product' doesn't exist
+mysql> INSERT' at line 1
+mysql> Query OK, 5 rows affected (0.13 sec)
+    -> Records: 5  Duplicates: 0  Warnings: 0
+    -> 
+    -> mysql> INSERT INTO sales 
+    -> (sale_id, customer_id, product_id, quantity, sale_date, total_amount)
+    -> VALUES
+    -> (1, 1, 101, 3, '2026-01-10', 285000.00),
+    -> (2, 2, 102, 4, '2026-01-12', 240000.00),
+    -> (3, 3, 103, 14, '2026-01-15', 133000.00),
+    -> (4, 4, 104, 14, '2026-I01-18', 7000.00),
+    -> (5, 5, 105, 70, '2026-01-20', 5600.00);NSERT INTO sales 
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Query OK, 5 rows affected (0.13 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mys' at line 1
+    -> ^C
+    -> mysql> (sale_id, customer_id, product_id, quantity, sale_date, total_amount)
+    ->     -> VALUES
+    ->     -> (1, 1, 101, 3, '2026-01-10', 285000.00),
+    ->     -> (2, 2, 102, 4, '2026-01-12', 240000.00),
+    ->     -> (3, 3, 103, 14, '2026-01-15', 133000.00),
+    ->     -> (4, 4, 104, 14, '2026-01-18', 7000.00),
+    ->     -> (5, 5, 105, 70, '2026-01-20', 5600.00);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'NSERT INTO sales 
+^C
+mysql> (sale_id, customer_id, product_id, quantity, sale_da' at line 1
+mysql> ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'sale_id, customer_id, product_id, quantity, sale_date, total_amount)
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ERROR 1064 (42000): You have an error in your SQL syntax' at line 1
+    '> VALUES
+    '> (1, ' at line 1
+    -> mysql> INSERT INTO Sales
+    ->     -> VALUES
+    ->     -> (1, 1, 101, 3, '2026-01-10', 285000.00),
+    ->     -> (2, 2, 102, 4, '2026-01-12', 240000.00),
+    ->     -> (3, 3, 103, 14, '2026-01-15', 133000.00),
+    ->     -> (4, 4, 104, 14, '2026-01-18', 7000.00),
+    ->     -> (5, 5, 105, 70, '2026-01-20', 5600.00);
+0ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'the manual that corresponds to your MySQL server version for the right syntax to' at line 1
+mysql> Query OK, 5 rows affected (0.15 sec)
+    -> Records: 5  Duplicates: 0  Warnings: 0
+    -> 
+i    -> mysql> show tables;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Query OK, 5 rows affected (0.15 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mys' at line 1
+mysql> +----------------------------+
+    -> | Tables_in_supermarket_3214 |
+    -> +----------------------------+
+    -> | Customer                   |
+    -> | Product                    |
+    -> | Sales                      |
+    -> +----------------------------+
+    -> 3 rows in set (0.00 sec)
+    -> 
+N    -> mysql> select *from Product
+    ->     -> select *from Customer
+    ->     -> select *from Sales;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '+----------------------------+
+| Tables_in_supermarket_3214 |
++-----------------' at line 1
+mysql> ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'select *from Customer
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ERROR 1064 (42000): You have an error in your SQL syntax' at line 1
+    '> select *from Sales' at line 2
+    -> mysql> select *from Product;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'the manual that corresponds to your MySQL server version for the right syntax to' at line 1
+mysql> +------------+--------------+----------+-------+-------------+
+    -> | product_id | product_name | price    | stock | category    |
+    -> +------------+--------------+----------+-------+-------------+
+    -> |        101 | Laptop       | 95000.00 |    67 | Electronics |
+    -> |        102 | Mobile Phone | 60000.00 |    29 | Electronics |
+    -> |        103 | Office Chair |  9500.00 |    76 | Furniture   |
+    -> |        104 | Water Bottle |   500.00 |    50 | Accessories |
+    -> |        105 | Notebook     |    80.00 |   200 | Stationery  |
+    -> +------------+--------------+----------+-------+-------------+
+    -> 5 rows in set (0.00 sec)
+    -> 
+    -> mysql> select *from Customer;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '+------------+--------------+----------+-------+-------------+
+| product_id | pr' at line 1
+mysql> +-------------+---------------+-----------------+------------+
+    -> | customer_id | customer_name | email           | phone      |
+    -> +-------------+---------------+-----------------+------------+
+    -> |           1 | Rahul Sharma  | rahul@gmail.com | 9876543210 |
+    -> |           2 | Priya Verma   | priya@gmail.com | 9123456780 |
+    -> |           3 | Amit Patel    | amit@gmail.com  | 9988776655 |
+    -> |           4 | Neha Singh    | NULL            | 9012345678 |
+    -> |           5 | Rohan Gupta   | rohan@gmail.com | NULL       |
+    -> +-------------+---------------+-----------------+------------+
+    -> 5 rows in set (0.00 sec)
+    -> 
+    -> mysql> select *from Sales;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '+-------------+---------------+-----------------+------------+
+| customer_id | c' at line 1
+mysql> +---------+-------------+------------+----------+------------+--------------+
+    -> | sale_id | customer_id | product_id | quantity | sale_date  | total_amount |
+    -> +---------+-------------+------------+----------+------------+--------------+
+    -> |       1 |           1 |        101 |        3 | 2026-01-10 |    285000.00 |
+    -> |       2 |           2 |        102 |        4 | 2026-01-12 |    240000.00 |
+    -> |       3 |           3 |        103 |       14 | 2026-01-15 |    133000.00 |
+    -> |       4 |           4 |        104 |       14 | 2026-01-18 |      7000.00 |
+    -> |       5 |           5 |        105 |       70 | 2026-01-20 |      5600.00 |
+    -> +---------+-------------+------------+----------+------------+--------------+
+    -> 5 rows in set (0.00 sec)
+    -> 
+-    -> mysql> select product_id,product_name
+    ->     -> from Product
+    ->     -> where stock<30;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '+---------+-------------+------------+----------+------------+--------------+
+| ' at line 1
+mysql> +------------+--------------+
+    -> | product_id | product_name |
+    -> +------------+--------------+
+    -> |        102 | Mobile Phone |
+    -> +------------+--------------+
+    -> 1 row in set (0.00 sec)
+    -> 
+    -> mysql> select product_id
+    ->     -> from Sales 
+    ->     -> where sale_date=2026-01-15 ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '+------------+--------------+
+| product_id | product_name |
++------------+------' at line 1
+mysql> Empty set, 1 warning (0.00 sec)
+    -> 
+    -> mysql> select product_id
+    -> select product_id
+    -> ^C
+    -> mysql> select product_id
+    ->     -> from Sales
+    ->     -> where sale_date='2025-01-12';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Empty set, 1 warning (0.00 sec)
+
+mysql> select product_id
+select product_id
+^C
+m' at line 1
+mysql> Empty set (0.00 sec)
+    -> 
+    -> mysql> select product_id,customer_id
+    ->     -> from Sales
+    ->     -> where total_amount>5000;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Empty set (0.00 sec)
+
+mysql> select product_id,customer_id
+    -> from Sales
+   ' at line 1
+mysql> +------------+-------------+
+    -> | product_id | customer_id |
+    -> +------------+-------------+
+    -> |        101 |           1 |
+    -> |        102 |           2 |
+    -> |        103 |           3 |
+    -> |        104 |           4 |
+    -> |        105 |           5 |
+    -> +------------+-------------+
+    -> 5 rows in set (0.00 sec)
+    -> 
+    -> mysql> select product_name
+    ->     -> from Product
+    ->     -> where price>5000;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '+------------+-------------+
+| product_id | customer_id |
++------------+--------' at line 1
+mysql> +--------------+
+    -> | product_name |
+    -> +--------------+
+    -> | Laptop       |
+    -> | Mobile Phone |
+    -> | Office Chair |
+    -> +--------------+
+    -> 3 rows in set (0.00 sec)
+    -> 
+    -> mysql> select product_id,customer_id,quantity
+    ->     -> from Sales;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '+--------------+
+| product_name |
++--------------+
+| Laptop       |
+| Mobile Pho' at line 1
+mysql> +------------+-------------+----------+
+    -> | product_id | customer_id | quantity |
+    -> +------------+-------------+----------+
+    -> |        101 |           1 |        3 |
+    -> |        102 |           2 |        4 |
+    -> |        103 |           3 |       14 |
+    -> |        104 |           4 |       14 |
+    -> |        105 |           5 |       70 |
+    -> +------------+-------------+----------+
+    -> 5 rows in set (0.00 sec)
+    -> 
+    -> mysql> SELECT 
+    ->     ->     c.customer_id,
+    ->     ->     c.customer_name,
+    ->     ->     p.product_id,
+    ->     ->     p.product_name,
+    ->     ->     p.price,
+    ->     ->     s.quantity,
+    ->     ->     s.total_amount,
+    ->     ->     s.sale_date
+    ->     -> FROM sales s
+    ->     -> JOIN customer c
+    ->     -> ON s.customer_id = c.customer_id
+    ->     -> JOIN product p
+    ->     -> ON s.product_id = p.product_id;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '+------------+-------------+----------+
+| product_id | customer_id | quantity |
+' at line 1
+mysql> ERROR 1146 (42S02): Table 'supermarket_3214.sales' doesn't exist
+    '> mysql> SELECT 
+    '>     ->     c.customer_id,
+    '>     ->     c.customer_name,
+    '>     ->     p.product_id,
+    '>     ->     p.product_name,
+    '>     ->     p.price,
+    '>     ->     s.quantity,
+    '>     ->     s.total_amount,
+    '>     ->     s.sale_date
+    '>     -> FROM Sales s
+    '>     -> JOIN Customer c
+    '>     -> ON s.customer_id = c.customer_id
+    '>     -> JOIN product p
+    '>     -> ON s.product_id = p.product_id;
+    '> ERROR 1146 (42S02): Table 'supermarket_3214.product' doesn't exist
+    -> mysql> SELECT 
+    ->     ->     c.customer_id,
+    ->     ->     c.customer_name,
+    ->     ->     p.product_id,
+    ->     ->     p.product_name,
+    ->     ->     p.price,
+    ->     ->     s.quantity,
+    ->     ->     s.total_amount,
+    ->     ->     s.sale_date
+    ->     -> FROM Sales s
+    ->     -> JOIN Customer c
+    ->     -> ON s.customer_id = c.customer_id
+    ->     -> JOIN product P
+    ->     -> ON s.product_id = p.product_id;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ERROR 1146 (42S02): Table 'supermarket_3214.sales' doesn't exist
+mysql> SELECT 
+' at line 1
+mysql> ERROR 1146 (42S02): Table 'supermarket_3214.product' doesn't exist
+    '> mysql> SELECT 
+    '>     ->     c.customer_id,
+    '>     ->     c.customer_name,
+    '>     ->     p.product_id,
+    '>     ->     p.product_name,
+    '>     ->     p.price,
+    '>     ->     s.quantity,
+    '>     ->     s.total_amount,
+    '>     ->     s.sale_date
+    '>     -> FROM Sales s
+    '>     -> JOIN Customer c
+    '>     -> ON s.customer_id = c.customer_id
+    '>     -> JOIN Product p
+    '>     -> ON s.product_id = p.product_id;
+    '> +-------------+---------------+------------+--------------+----------+----------+--------------+------------+
+    '> | customer_id | customer_name | product_id | product_name | price    | quantity | total_amount | sale_date  |
+    '> +-------------+---------------+------------+--------------+----------+----------+--------------+------------+
+    '> |           1 | Rahul Sharma  |        101 | Laptop       | 95000.00 |        3 |    285000.00 | 2026-01-10 |
+    '> |           2 | Priya Verma   |        102 | Mobile Phone | 60000.00 |        4 |    240000.00 | 2026-01-12 |
+    '> |           3 | Amit Patel    |        103 | Office Chair |  9500.00 |       14 |    133000.00 | 2026-01-15 |
+    '> |           4 | Neha Singh    |        104 | Water Bottle |   500.00 |       14 |      7000.00 | 2026-01-18 |
+    '> |           5 | Rohan Gupta   |        105 | Notebook     |    80.00 |       70 |      5600.00 | 2026-01-20 |
+    '> +-------------+---------------+------------+--------------+----------+----------+--------------+------------+
+    '> 5 rows in set (0.00 sec)
+    '> 
+
