@@ -1,0 +1,238 @@
++--------------+---------------+------+-----+---------+-------+
+| Field        | Type          | Null | Key | Default | Extra |
++--------------+---------------+------+-----+---------+-------+
+| product_id   | int           | NO   | PRI | NULL    |       |
+| product_name | varchar(50)   | NO   |     | NULL    |       |
+| price        | decimal(10,2) | YES  |     | NULL    |       |
+| stock        | int           | YES  |     | NULL    |       |
+| category     | varchar(50)   | YES  |     | NULL    |       |
++--------------+---------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> desc Customer;
++---------------+-------------+------+-----+---------+-------+
+| Field         | Type        | Null | Key | Default | Extra |
++---------------+-------------+------+-----+---------+-------+
+| customer_id   | int         | NO   | PRI | NULL    |       |
+| customer_name | varchar(50) | NO   |     | NULL    |       |
+| email         | varchar(50) | YES  |     | NULL    |       |
+| phone         | varchar(15) | YES  |     | NULL    |       |
++---------------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> desc Sales;
++-------------+------+------+-----+---------+-------+
+| Field       | Type | Null | Key | Default | Extra |
++-------------+------+------+-----+---------+-------+
+| sale_id     | int  | NO   | PRI | NULL    |       |
+| customer_id | int  | YES  | MUL | NULL    |       |
+| product_id  | int  | YES  | MUL | NULL    |       |
+| quantity    | int  | YES  |     | NULL    |       |
+| sale_date   | date | YES  |     | NULL    |       |
++-------------+------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> alter table Sales
+    -> add total_amount float(10,2);
+Query OK, 0 rows affected, 1 warning (2.57 sec)
+Records: 0  Duplicates: 0  Warnings: 1
+
+mysql> desc Sales;
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| sale_id      | int         | NO   | PRI | NULL    |       |
+| customer_id  | int         | YES  | MUL | NULL    |       |
+| product_id   | int         | YES  | MUL | NULL    |       |
+| quantity     | int         | YES  |     | NULL    |       |
+| sale_date    | date        | YES  |     | NULL    |       |
+| total_amount | float(10,2) | YES  |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> INSERT INTO product (product_id, product_name, price, stock, category)
+    -> VALUES
+    -> (101, 'Laptop', 95000.00, 67, 'Electronics'),
+    -> (102, 'Mobile Phone', 60000.00, 29, 'Electronics'),
+    -> (103, 'Office Chair', 9500.00, 76, 'Furniture'),
+    -> (104, 'Water Bottle', 500.00, 50, 'Accessories'),
+    -> (105, 'Notebook', 80.00, 200, 'Stationery');
+ERROR 1146 (42S02): Table 'supermarket_3214.product' doesn't exist
+mysql> INSERT INTO Product (product_id, product_name, price, stock, category)
+    -> VALUES
+    -> (101, 'Laptop', 95000.00, 67, 'Electronics'),
+    -> (102, 'Mobile Phone', 60000.00, 29, 'Electronics'),
+    -> (103, 'Office Chair', 9500.00, 76, 'Furniture'),
+    -> (104, 'Water Bottle', 500.00, 50, 'Accessories'),
+    -> (105, 'Notebook', 80.00, 200, 'Stationery');
+Query OK, 5 rows affected (0.16 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> INSERT INTO Customer (customer_id, customer_name, email, phone)
+VALUES
+(1, 'Rahul Sharma', 'rahul@gmail.com', '9876543210'),
+(2, 'Priya Verma', 'priya@gmail.com', '9123456780'),
+(3, 'Amit Patel', 'amit@gmail.com', '9988776655'),
+(4, 'Neha SinghI', NULL, '9012345678'),
+(5, 'Rohan Gupta', 'rohan@gmail.com', NULL);NSERT INTO Customer (customer_id, customer_name, email, phone)
+^C
+mysql> VALUES
+    -> (1, 'Rahul Sharma', 'rahul@gmail.com', '9876543210'),
+    -> (2, 'Priya Verma', 'priya@gmail.com', '9123456780'),
+    -> (3, 'Amit Patel', 'amit@gmail.com', '9988776655'),
+    -> (4, 'Neha Singh', NULL, '9012345678'),
+    -> 
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(1, 'Rahul Sharma', 'rahul@gmail.com', '9876543210'),
+(2, 'Priya Verma', 'priya@' at line 2
+mysql> INSERT INTO Customer (customer_id, customer_name, email, phone)
+    -> VALUES
+    -> (1, 'Rahul Sharma', 'rahul@gmail.com', '9876543210'),
+    -> (2, 'Priya Verma', 'priya@gmail.com', '9123456780'),
+    -> (3, 'Amit Patel', 'amit@gmail.com', '9988776655'),
+    -> (4, 'Neha Singh', NULL, '9012345678'),
+    -> (5, 'Rohan Gupta', 'rohan@gmail.com', NULL);
+Query OK, 5 rows affected (0.13 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> INSERT INTO sales 
+(sale_id, customer_id, product_id, quantity, sale_date, total_amount)
+VALUES
+(1, 1, 101, 3, '2026-01-10', 285000.00),
+(2, 2, 102, 4, '2026-01-12', 240000.00),
+(3, 3, 103, 14, '2026-01-15', 133000.00),
+(4, 4, 104, 14, '2026-I01-18', 7000.00),
+(5, 5, 105, 70, '2026-01-20', 5600.00);NSERT INTO sales 
+^C
+mysql> (sale_id, customer_id, product_id, quantity, sale_date, total_amount)
+    -> VALUES
+    -> (1, 1, 101, 3, '2026-01-10', 285000.00),
+    -> (2, 2, 102, 4, '2026-01-12', 240000.00),
+    -> (3, 3, 103, 14, '2026-01-15', 133000.00),
+    -> (4, 4, 104, 14, '2026-01-18', 7000.00),
+    -> (5, 5, 105, 70, '2026-01-20', 5600.00);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'sale_id, customer_id, product_id, quantity, sale_date, total_amount)
+VALUES
+(1, ' at line 1
+mysql> INSERT INTO Sales
+    -> VALUES
+    -> (1, 1, 101, 3, '2026-01-10', 285000.00),
+    -> (2, 2, 102, 4, '2026-01-12', 240000.00),
+    -> (3, 3, 103, 14, '2026-01-15', 133000.00),
+    -> (4, 4, 104, 14, '2026-01-18', 7000.00),
+    -> (5, 5, 105, 70, '2026-01-20', 5600.00);
+Query OK, 5 rows affected (0.15 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> show tables;
++----------------------------+
+| Tables_in_supermarket_3214 |
++----------------------------+
+| Customer                   |
+| Product                    |
+| Sales                      |
++----------------------------+
+3 rows in set (0.00 sec)
+
+mysql> select *from Product
+    -> select *from Customer
+    -> select *from Sales;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'select *from Customer
+select *from Sales' at line 2
+mysql> select *from Product;
++------------+--------------+----------+-------+-------------+
+| product_id | product_name | price    | stock | category    |
++------------+--------------+----------+-------+-------------+
+|        101 | Laptop       | 95000.00 |    67 | Electronics |
+|        102 | Mobile Phone | 60000.00 |    29 | Electronics |
+|        103 | Office Chair |  9500.00 |    76 | Furniture   |
+|        104 | Water Bottle |   500.00 |    50 | Accessories |
+|        105 | Notebook     |    80.00 |   200 | Stationery  |
++------------+--------------+----------+-------+-------------+
+5 rows in set (0.00 sec)
+
+mysql> select *from Customer;
++-------------+---------------+-----------------+------------+
+| customer_id | customer_name | email           | phone      |
++-------------+---------------+-----------------+------------+
+|           1 | Rahul Sharma  | rahul@gmail.com | 9876543210 |
+|           2 | Priya Verma   | priya@gmail.com | 9123456780 |
+|           3 | Amit Patel    | amit@gmail.com  | 9988776655 |
+|           4 | Neha Singh    | NULL            | 9012345678 |
+|           5 | Rohan Gupta   | rohan@gmail.com | NULL       |
++-------------+---------------+-----------------+------------+
+5 rows in set (0.00 sec)
+
+mysql> select *from Sales;
++---------+-------------+------------+----------+------------+--------------+
+| sale_id | customer_id | product_id | quantity | sale_date  | total_amount |
++---------+-------------+------------+----------+------------+--------------+
+|       1 |           1 |        101 |        3 | 2026-01-10 |    285000.00 |
+|       2 |           2 |        102 |        4 | 2026-01-12 |    240000.00 |
+|       3 |           3 |        103 |       14 | 2026-01-15 |    133000.00 |
+|       4 |           4 |        104 |       14 | 2026-01-18 |      7000.00 |
+|       5 |           5 |        105 |       70 | 2026-01-20 |      5600.00 |
++---------+-------------+------------+----------+------------+--------------+
+5 rows in set (0.00 sec)
+
+mysql> select product_id,product_name
+    -> from Product
+    -> where stock<30;
++------------+--------------+
+| product_id | product_name |
++------------+--------------+
+|        102 | Mobile Phone |
++------------+--------------+
+1 row in set (0.00 sec)
+
+mysql> select product_id
+    -> from Sales 
+    -> where sale_date=2026-01-15 ;
+Empty set, 1 warning (0.00 sec)
+
+mysql> select product_id
+select product_id
+^C
+mysql> select product_id
+    -> from Sales
+    -> where sale_date='2025-01-12';
+Empty set (0.00 sec)
+
+mysql> select product_id,customer_id
+    -> from Sales
+    -> where total_amount>5000;
++------------+-------------+
+| product_id | customer_id |
++------------+-------------+
+|        101 |           1 |
+|        102 |           2 |
+|        103 |           3 |
+|        104 |           4 |
+|        105 |           5 |
++------------+-------------+
+5 rows in set (0.00 sec)
+
+mysql> select product_name
+    -> from Product
+    -> where price>5000;
++--------------+
+| product_name |
++--------------+
+| Laptop       |
+| Mobile Phone |
+| Office Chair |
++--------------+
+3 rows in set (0.00 sec)
+
+mysql> select product_id,customer_id,quantity
+    -> from Sales;
++------------+-------------+----------+
+| product_id | customer_id | quantity |
++------------+-------------+----------+
+|        101 |           1 |        3 |
+|        102 |           2 |        4 |
+|        103 |           3 |       14 |
+|        104 |           4 |       14 |
+|        105 |           5 |       70 |
++------------+-------------+----------+
+5 rows in set (0.00 sec)
