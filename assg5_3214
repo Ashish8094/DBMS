@@ -1,0 +1,291 @@
+(base) admin1@admin1-ThinkCentre-M80:~$ sudo su 
+[sudo] password for admin1: 
+root@admin1-ThinkCentre-M80:/home/admin1# mysql
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 16
+Server version: 8.0.42-0ubuntu0.20.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2025, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> showdatabases;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'showdatabases' at line 1
+mysql> showdatabases
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'showdatabases' at line 1
+mysql> databases
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'databases' at line 1
+mysql> show databases;
++---------------------+
+| Database            |
++---------------------+
+| Abhinav_Sharma      |
+| MovieDB             |
+| PRODUCT             |
+| Praveen             |
+| QUerY               |
+| add3303             |
+| add54               |
+| asd                 |
+| cc                  |
+| dd                  |
+| employee3233        |
+| employee_3214       |
+| employee_3233_compA |
+| employee_db_3203    |
+| hms_db              |
+| hospital_db         |
+| information_schema  |
+| libr                |
+| library3233         |
+| librarydb           |
+| mock                |
+| movie               |
+| movie1              |
+| mysql               |
+| performance_schema  |
+| practical           |
+| sales_db_3203       |
+| supermarket_3214    |
+| sys                 |
++---------------------+
+29 rows in set (0.04 sec)
+
+mysql> create assg5_3214;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'assg5_3214' at line 1
+mysql> create database assg5_3214;
+Query OK, 1 row affected (0.17 sec)
+
+mysql> use assg5_3214;
+Database changed
+mysql> create table Students;
+ERROR 4028 (HY000): A table must have at least one visible column.
+mysql> create table Students()
+    -> create table Students(
+    -> id int primary key,
+    -> name varchar(50) notnull,
+    -> dept varchar(50));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')
+create table Students(
+id int primary key,
+name varchar(50) notnull,
+dept varc' at line 1
+mysql> CREATE TABLE Students(
+    -> id INT PRIMARY KEY,
+    -> name VARCHAR(50) NOT NULL,
+    -> dept VARCHAR(50)
+    -> );
+Query OK, 0 rows affected (1.71 sec)
+
+mysql> CREATE TABLE Courses (
+    ->     course_id INT PRIMARY KEY,
+    ->     course_name VARCHAR(100) NOT NULL,
+    ->     credits INT
+    -> );
+Query OK, 0 rows affected (0.69 sec)
+
+mysql> CREATE TABLE Enrollments (
+    ->     enroll_id INT PRIMARY KEY,
+    ->     stud_id INT,
+    ->     course_id INT,
+    ->     grade VARCHAR(5),
+    -> 
+    ->     FOREIGN KEY (stud_id) REFERENCES Students(id),
+    ->     FOREIGN KEY (course_id) REFERENCES Courses(course_id)
+    -> );
+Query OK, 0 rows affected (2.14 sec)
+
+mysql> INSERT INTO Students (id, name, dept) VALUES
+    -> (1, 'Amit', 'CSE'),
+    -> (2, 'Priya', 'IT'),
+    -> (3, 'Rahul', 'ECE'),
+    -> (4, 'Sneha', 'CSE'),
+    -> (5, 'Karan', 'ME');
+Query OK, 5 rows affected (0.10 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> SELECT *FROM Students;
++----+-------+------+
+| id | name  | dept |
++----+-------+------+
+|  1 | Amit  | CSE  |
+|  2 | Priya | IT   |
+|  3 | Rahul | ECE  |
+|  4 | Sneha | CSE  |
+|  5 | Karan | ME   |
++----+-------+------+
+5 rows in set (0.00 sec)
+
+mysql> INSERT INTO Courses (course_id, course_name, credits) VALUES
+    -> (101, 'Data Structures', 4),
+    -> (102, 'Database Systems', 3),
+    -> (103, 'Operating Systems', 4),
+    -> (104, 'Computer Networks', 3),
+    -> (105, 'Software Engineering', 3);
+Query OK, 5 rows affected (0.09 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> INSERT INTO Enrollments (enroll_id, stud_id, course_id, grade) VALUES
+    -> (1, 1, 101, 'A'),
+    -> (2, 2, 102, 'B+'),
+    -> (3, 3, 103, 'A-'),
+    -> (4, 4, 101, 'B'),
+    -> (5, 5, 104, 'A');
+Query OK, 5 rows affected (0.11 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> SELECT *FROM Courses;
++-----------+----------------------+---------+
+| course_id | course_name          | credits |
++-----------+----------------------+---------+
+|       101 | Data Structures      |       4 |
+|       102 | Database Systems     |       3 |
+|       103 | Operating Systems    |       4 |
+|       104 | Computer Networks    |       3 |
+|       105 | Software Engineering |       3 |
++-----------+----------------------+---------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT *FROM Enrollments;
++-----------+---------+-----------+-------+
+| enroll_id | stud_id | course_id | grade |
++-----------+---------+-----------+-------+
+|         1 |       1 |       101 | A     |
+|         2 |       2 |       102 | B+    |
+|         3 |       3 |       103 | A-    |
+|         4 |       4 |       101 | B     |
+|         5 |       5 |       104 | A     |
++-----------+---------+-----------+-------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT Students.name,
+    -> Students.dept,
+    -> Course.course_name,
+    -> Course.credits,
+    -> Enrollments.grade
+    -> FROM Students
+    -> INNER JOIN Enrollments
+    ->       ON Students.id=Enrollments.stud_id
+    -> INNER JOIN Courses
+    ->       ON Enrollments.stud_id=Courses.course_id;
+ERROR 1054 (42S22): Unknown column 'Course.course_name' in 'field list'
+mysql> SELECT Students.name,
+    -> Students.dept,
+    -> Courses.course_name,
+    -> Course.credits,
+    -> Enrollments.grade
+    -> FROM Students
+    -> INNER JOIN Enrollments
+    ->       ON Students.id=Enrollments.stud_id
+    -> INNER JOIN Courses
+    ->       ON Enrollments.stud_id=Courses.course_id;
+ERROR 1054 (42S22): Unknown column 'Course.credits' in 'field list'
+mysql> SELECT 
+    ->     Students.name,
+    ->     Students.dept,
+    ->     Courses.course_name,
+    ->     Courses.credits,
+    ->     Enrollments.grade
+    -> FROM Students
+    -> INNER JOIN Enrollments 
+    ->     ON Students.id = Enrollments.stud_id
+    -> INNER JOIN Courses 
+    ->     ON Enrollments.course_id = Courses.course_id;
++-------+------+-------------------+---------+-------+
+| name  | dept | course_name       | credits | grade |
++-------+------+-------------------+---------+-------+
+| Amit  | CSE  | Data Structures   |       4 | A     |
+| Priya | IT   | Database Systems  |       3 | B+    |
+| Rahul | ECE  | Operating Systems |       4 | A-    |
+| Sneha | CSE  | Data Structures   |       4 | B     |
+| Karan | ME   | Computer Networks |       3 | A     |
++-------+------+-------------------+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT 
+    -> Courses.course_name,
+    -> Students.name
+    -> 
+    -> FROM Courses
+    -> LEFT JOIN Enrollments
+    -> 
+Display all 783 possibilities? (y or n) 
+    -> n
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 7
+mysql> SELECT 
+    ->     -> Courses.course_name,
+    ->     -> Students.name
+    -> 
+    -> FROM Courses
+    -> LEFT JOIN Enrollments
+    ->      Courses.course_id=Enrollments.course_id
+    -> LEFT JOIN Students
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '-> Courses.course_name,
+    -> Students.name
+
+FROM Courses
+LEFT JOIN Enrollments' at line 2
+mysql> SELECT 
+    ->     c.course_name,
+    ->     s.name AS student_name
+    -> FROM Courses c
+    -> LEFT JOIN Enrollments e 
+    ->     ON c.course_id = e.course_id
+    -> LEFT JOIN Students s 
+    ->     ON e.stud_id = s.id;
++----------------------+--------------+
+| course_name          | student_name |
++----------------------+--------------+
+| Data Structures      | Amit         |
+| Data Structures      | Sneha        |
+| Database Systems     | Priya        |
+| Operating Systems    | Rahul        |
+| Computer Networks    | Karan        |
+| Software Engineering | NULL         |
++----------------------+--------------+
+6 rows in set (0.01 sec)
+
+mysql> SELECT 
+    ->     s.dept,
+    ->     COUNT(e.enroll_id) AS total_enrollments
+    -> FROM Students s
+    -> INNER JOIN Enrollments e 
+    ->     ON s.id = e.stud_id
+    -> INNER JOIN Courses c 
+    ->     ON e.course_id = c.course_id
+    -> GROUP BY s.dept;
++------+-------------------+
+| dept | total_enrollments |
++------+-------------------+
+| CSE  |                 2 |
+| IT   |                 1 |
+| ECE  |                 1 |
+| ME   |                 1 |
++------+-------------------+
+4 rows in set (0.02 sec)
+
+mysql> SELECT 
+    -> AVG(Enrollments.grade) AS average_grade
+    -> FROM Courses
+    -> INNER JOIN Courses
+    ->     ON Courses.course_id=Enrollments.course_id;
+ERROR 1066 (42000): Not unique table/alias: 'Courses'
+mysql> SELECT
+    -> AVG(Enrollments.grade) as average_grade
+    -> FROM Enrollments
+    -> INNER JOIN Courses
+    ->      ON Courses.course_id=Enrollments.course_id;
++---------------+
+| average_grade |
++---------------+
+|             0 |
++---------------+
+1 row in set, 3 warnings (0.01 sec)
