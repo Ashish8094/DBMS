@@ -34,7 +34,7 @@ mysql> INSERT INTO Salespeople VALUES
     -> (3, 'Raj', 'Electronics', 60000),
     -> (3, 'Raj', 'Electronics', 60000),
 [1]+  Stopped                 mysql
-root@admin1-ThinkCentre-M80:/home/admin1/Desktop/3243# mysql
+root@admin1-ThinkCentre-M80:/home/admin1/Desktop/3214# mysql
 Welcome to the MySQL monitor.  Commands end with ; or \g.
 Your MySQL connection id is 9
 Server version: 8.0.42-0ubuntu0.20.04.1 (Ubuntu)
